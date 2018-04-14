@@ -25,6 +25,41 @@ workflows:
             set -ex
             stepman audit --step-yml ./step.yml
 
+  release:
+    envs:
+    - BITRISE_STEP_GIT_CLONE_URL: https://github.com/godrei/go-echo.git
+    - BITRISE_STEP_ID: echo
+    - BITRISE_STEP_VERSION: $BITRISE_GIT_TAG
+    - BITRISE_GITHUB_API_TOKEN: $BITRISE_GITHUB_API_TOKEN
+    - MY_STEPLIB_REPO_FORK_GIT_URL: $MY_STEPLIB_REPO_FORK_GIT_URL
+    before_run:
+    - test
+    steps:
+    - git::https://github.com/godrei/steps-generate-changelog@master:
+        inputs:
+        - new_version: $BITRISE_STEP_VERSION
+    - git::https://github.com/godrei/steps-github-release@master:
+        inputs:
+        - api_token: $BITRISE_GITHUB_API_TOKEN
+        - repository_url: $BITRISE_STEP_GIT_CLONE_URL
+        - commit: $BITRISE_GIT_COMMIT
+        - tag: $BITRISE_STEP_VERSION
+        - name: $BITRISE_STEP_VERSION
+        - body: $BITRSE_CHANGELOG
+        - draft: "yes"
+    - script:
+        title: Share this step
+        inputs:
+        - content: |-
+            #!/bin/bash
+            set -ex
+            bitrise share start -c "${MY_STEPLIB_REPO_FORK_GIT_URL}"
+            echo yes | bitrise share create \
+              --stepid "${BITRISE_STEP_ID}" \
+              --tag "${BITRISE_STEP_VERSION}" \
+              --git "${BITRISE_STEP_GIT_CLONE_URL}"
+            bitrise share finish
+
   dep-update:
     steps:
     - script:
