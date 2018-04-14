@@ -1,0 +1,21 @@
+title: Go Echo
+summary: Prints the given message
+description: Prints the given message.
+
+website: https://github.com/godrei/go-echo
+source_code_url: https://github.com/godrei/go-echo
+support_url: https://github.com/godrei/go-echo/issues
+
+type_tags:
+- deploy
+
+toolkit:
+  go:
+    package_name: github.com/godrei/go-echo
+
+inputs:
+- message: 
+  opts:
+    title: Message
+    summary: Message to print
+    description: Message to print.

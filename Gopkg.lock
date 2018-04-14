@@ -2,6 +2,15 @@
 
 
 [[projects]]
+  branch = "master"
+  name = "github.com/bitrise-io/go-utils"
+  packages = [
+    "colorstring",
+    "log"
+  ]
+  revision = "b33f6bcef9b50045d7e62364b354584afc3ee329"
+
+[[projects]]
   name = "github.com/davecgh/go-spew"
   packages = ["spew"]
   revision = "346938d642f2ec3594ed81d874461961cd0faa76"
@@ -43,6 +52,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "f6104cd7187c3053d7bfeaaa5c5e2307f1ac7ccfdf3fc5d1f1206fd695267265"
+  inputs-digest = "fb7585259c0caeb8986f90c0f6694ff719746ae49fd8aab8929a2e37f4be2c60"
   solver-name = "gps-cdcl"
   solver-version = 1
