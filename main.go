@@ -20,8 +20,24 @@ var cmd = &cobra.Command{
 			log.Errorf("message to print not specified")
 			os.Exit(1)
 		}
-		echo.Log(message)
+		format := os.Getenv("format")
+		if format == "" {
+			if uppercase {
+				format = "upper"
+			} else if lowercase {
+				format = "lower"
+			}
+		}
+		echo.Log(message, format)
 	},
+}
+
+var uppercase bool
+var lowercase bool
+
+func init() {
+	cmd.PersistentFlags().BoolVarP(&uppercase, "upper", "u", false, "Converts message to uppercase characters.")
+	cmd.PersistentFlags().BoolVarP(&lowercase, "lower", "l", false, "Converts message to lowercase characters.")
 }
 
 func main() {
