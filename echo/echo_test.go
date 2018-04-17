@@ -8,30 +8,10 @@ import (
 )
 
 func TestLog(t *testing.T) {
-	{
-		var b bytes.Buffer
-		out = &b
+	var b bytes.Buffer
+	out = &b
 
-		Log("Hello World!", "no_format")
+	Log("Hello World!")
 
-		require.Equal(t, "Hello World!\n", b.String())
-	}
-
-	{
-		var b bytes.Buffer
-		out = &b
-
-		Log("Hello World!", "upper")
-
-		require.Equal(t, "HELLO WORLD!\n", b.String())
-	}
-
-	{
-		var b bytes.Buffer
-		out = &b
-
-		Log("Hello World!", "lower")
-
-		require.Equal(t, "hello world!\n", b.String())
-	}
+	require.Equal(t, "Hello World!\n", b.String())
 }
