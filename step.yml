@@ -19,12 +19,3 @@ inputs:
     title: Message
     summary: Message to print
     description: Message to print.
-- format: no_format
-  opts:
-    title: Message format
-    summary: Message format
-    description: Message format.
-    value_options:
-    - no_format
-    - upper
-    - lower
