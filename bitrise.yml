@@ -14,6 +14,7 @@ workflows:
         title: Step Test
         inputs:
         - message: Hello World!
+        - format: "upper"
 
   audit-this-step:
     steps:
