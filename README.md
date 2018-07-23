@@ -1,3 +1,3 @@
 # go-echo
 
-Prints the given message.
+Prints the given message
